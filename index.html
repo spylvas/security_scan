@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; form-action 'none'; base-uri 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Security Scan Launcher</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Security Scan Launcher</h1>
+    <p class="lead">Enter a site. The scans open in new tabs. SSL Labs and securityheaders.com run with their results hidden from public listings.</p>
+
+    <form id="scan-form" novalidate>
+      <label for="target">Website URL or hostname</label>
+      <div class="row">
+        <input id="target" name="target" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required>
+        <button type="submit">Scan</button>
+      </div>
+      <label class="check">
+        <input id="include-observatory" type="checkbox">
+        Include Mozilla Observatory <span class="warn">(results are public, no way to hide them)</span>
+      </label>
+      <p id="error" class="error" role="alert" hidden></p>
+    </form>
+
+    <section id="results" hidden>
+      <h2>Scans for <code id="host"></code></h2>
+      <ul id="links"></ul>
+      <p class="hint">If only one tab opened, allow pop-ups for this site to open them all at once, or use the links above.</p>
+    </section>
+
+    <footer>
+      <p>Nothing is sent or stored by this page. The scanning sites see the hostname you scan, and SSL Labs caches results for about 24 hours.</p>
+    </footer>
+  </main>
+</body>
+</html>
