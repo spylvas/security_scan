@@ -83,10 +83,6 @@ function onSubmit(event) {
     return li;
   }));
   results.hidden = false;
-
-  for (const s of selected) {
-    window.open(s.url(host), '_blank', 'noopener,noreferrer');
-  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

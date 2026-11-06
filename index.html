@@ -12,13 +12,13 @@
 <body>
   <main>
     <h1>Security Scan Launcher</h1>
-    <p class="lead">Enter a site. The scans open in new tabs. SSL Labs and securityheaders.com run with their results hidden from public listings.</p>
+    <p class="lead">Enter a site to get scan links. Each one opens in a new tab. SSL Labs and securityheaders.com run with their results hidden from public listings.</p>
 
     <form id="scan-form" novalidate>
       <label for="target">Website URL or hostname</label>
       <div class="row">
         <input id="target" name="target" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required>
-        <button type="submit">Scan</button>
+        <button type="submit">Get scan links</button>
       </div>
       <label class="check">
         <input id="include-observatory" type="checkbox">
@@ -30,7 +30,7 @@
     <section id="results" hidden>
       <h2>Scans for <code id="host"></code></h2>
       <ul id="links"></ul>
-      <p class="hint">If only one tab opened, allow pop-ups for this site to open them all at once, or use the links above.</p>
+      <p class="hint">Click each link to start that scan in a new tab.</p>
     </section>
 
     <footer>
