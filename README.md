@@ -1,6 +1,6 @@
 # security_scan
 
-A one-page static site. You enter a website and it opens the free grading scans in new tabs:
+A one-page static site. You enter a website and it gives you links to the free grading scans. Each link opens in a new tab:
 
 | Scanner | Checks | Privacy |
 |---|---|---|
@@ -16,8 +16,8 @@ Enter `example.com`, `www.example.com` or a full URL such as `https://example.co
 hostname is used. IP addresses, `localhost` and bare names are rejected because the scanners can't
 grade them.
 
-Most browsers let one click open only one pop-up. If only one tab opens, allow pop-ups for the site
-or use the links shown on the page.
+The page doesn't open tabs by itself, because pop-up blockers would stop all but the first. Click
+each link to start that scan.
 
 ## Privacy
 
