@@ -11,30 +11,36 @@
 </head>
 <body>
   <main>
-    <h1>Security Scan Launcher</h1>
-    <p class="lead">Enter a site to get scan links. Each one opens in a new tab. SSL Labs and securityheaders.com run with their results hidden from public listings.</p>
+    <header class="hero">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/>
+        <path class="tick" d="m8.5 12 2.5 2.5 4.5-5"/>
+      </svg>
+      <h1>Security Scan Launcher</h1>
+      <p class="lead">Grade a website's TLS and security headers with free public scanners. Enter a site to get the scan links.</p>
+    </header>
 
-    <form id="scan-form" novalidate>
-      <label for="target">Website URL or hostname</label>
+    <form id="scan-form" class="panel" novalidate>
+      <label for="target" class="field-label">Website URL or hostname</label>
       <div class="row">
-        <input id="target" name="target" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required>
+        <input id="target" name="target" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" required aria-describedby="error">
         <button type="submit">Get scan links</button>
       </div>
       <label class="check">
         <input id="include-observatory" type="checkbox">
-        Include Mozilla Observatory <span class="warn">(results are public, no way to hide them)</span>
+        <span>Include Mozilla Observatory <span class="muted">— its results are always public</span></span>
       </label>
       <p id="error" class="error" role="alert" hidden></p>
     </form>
 
     <section id="results" hidden>
-      <h2>Scans for <code id="host"></code></h2>
-      <ul id="links"></ul>
-      <p class="hint">Click each link to start that scan in a new tab.</p>
+      <h2>Scans for <span id="host" class="host"></span></h2>
+      <ul id="links" class="cards"></ul>
+      <p class="muted small">Each link opens its scan in a new tab.</p>
     </section>
 
     <footer>
-      <p>Nothing is sent or stored by this page. The scanning sites see the hostname you scan, and SSL Labs caches results for about 24 hours.</p>
+      <p>This page sends and stores nothing. The scanning sites see the hostname you scan, and SSL Labs caches results for about 24 hours.</p>
     </footer>
   </main>
 </body>

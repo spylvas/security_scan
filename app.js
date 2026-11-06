@@ -3,17 +3,20 @@
 const SCANNERS = [
   {
     name: 'SSL Labs',
-    what: 'TLS configuration (results hidden)',
+    checks: 'TLS and certificate configuration',
+    private: true,
     url: (host) => `https://www.ssllabs.com/ssltest/analyze.html?d=${encodeURIComponent(host)}&hideResults=on`,
   },
   {
     name: 'securityheaders.com',
-    what: 'HTTP response headers (results hidden)',
+    checks: 'HTTP security response headers',
+    private: true,
     url: (host) => `https://securityheaders.com/?q=${encodeURIComponent('https://' + host)}&hide=on&followRedirects=on`,
   },
   {
     name: 'Mozilla Observatory',
-    what: 'Headers and best practices (results public)',
+    checks: 'Headers and web security best practices',
+    private: false,
     optional: true,
     url: (host) => `https://developer.mozilla.org/en-US/observatory/analyze?host=${encodeURIComponent(host)}`,
   },
@@ -51,6 +54,7 @@ function showError(message) {
   const el = document.getElementById('error');
   el.textContent = message;
   el.hidden = !message;
+  document.getElementById('target').setAttribute('aria-invalid', message ? 'true' : 'false');
 }
 
 function onSubmit(event) {
@@ -75,11 +79,30 @@ function onSubmit(event) {
   list.replaceChildren(...selected.map((s) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
+    a.className = 'card';
     a.href = s.url(host);
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.textContent = s.name;
-    li.append(a, ` - ${s.what}`);
+
+    const name = document.createElement('span');
+    name.className = 'card-name';
+    name.textContent = s.name;
+
+    const badge = document.createElement('span');
+    badge.className = s.private ? 'badge badge-private' : 'badge badge-public';
+    badge.textContent = s.private ? 'Results hidden' : 'Results public';
+
+    const checks = document.createElement('span');
+    checks.className = 'card-checks';
+    checks.textContent = s.checks;
+
+    const open = document.createElement('span');
+    open.className = 'card-open';
+    open.setAttribute('aria-hidden', 'true');
+    open.textContent = 'Open ↗';
+
+    a.append(name, badge, checks, open);
+    li.append(a);
     return li;
   }));
   results.hidden = false;
